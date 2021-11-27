@@ -27,7 +27,7 @@
         android:id="@+id/fabbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_gravity="bottom|left"
         android:layout_margin="20dp"
         android:src="?attr/fab_drawable"
         fab:fab_colorNormal="@color/default_underline_indicator_selected_color" />

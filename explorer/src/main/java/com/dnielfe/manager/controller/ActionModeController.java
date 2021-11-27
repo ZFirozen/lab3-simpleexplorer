@@ -15,6 +15,7 @@ import com.dnielfe.manager.BrowserActivity;
 import com.dnielfe.manager.R;
 import com.dnielfe.manager.SearchActivity;
 import com.dnielfe.manager.adapters.BookmarksAdapter;
+import com.dnielfe.manager.dialogs.BackupDialog;
 import com.dnielfe.manager.dialogs.DeleteFilesDialog;
 import com.dnielfe.manager.dialogs.FilePropertiesDialog;
 import com.dnielfe.manager.dialogs.GroupOwnerDialog;
@@ -71,6 +72,7 @@ public final class ActionModeController {
                     menu.removeItem(R.id.actionzip);
 
                 if (mListView.getCheckedItemCount() > 1) {
+                    menu.removeItem(R.id.actionbackup);
                     menu.removeItem(R.id.actiondetails);
                 }
             } else {
@@ -78,6 +80,7 @@ public final class ActionModeController {
                     menu.removeItem(R.id.actiongroupowner);
 
                 if (mListView.getCheckedItemCount() > 1) {
+                    menu.removeItem(R.id.actionbackup);
                     menu.removeItem(R.id.actionrename);
                     menu.removeItem(R.id.actiongroupowner);
                     menu.removeItem(R.id.actiondetails);
@@ -220,6 +223,19 @@ public final class ActionModeController {
                                             .getItemAtPosition(key)).getName());
                             mode.finish();
                             dialog3.show(mActivity.getFragmentManager(), BrowserActivity.TAG_DIALOG);
+                            break;
+                        }
+                    }
+                    return true;
+                case R.id.actionbackup:
+                    for (int i = 0; i < checkedItemSize; i++) {
+                        final int key = items.keyAt(i);
+                        if (items.get(key)) {
+                            final DialogFragment dialog4 = BackupDialog
+                                    .instantiate(new File((String) mListView
+                                            .getItemAtPosition(key)).getName());
+                            mode.finish();
+                            dialog4.show(mActivity.getFragmentManager(), BrowserActivity.TAG_DIALOG);
                             break;
                         }
                     }
